@@ -79,8 +79,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.4
-          bundler-cache: true
-          cache-version: "tools-v1-${{ runner.os }}"
 
       - name: Setup Kamal
         run: gem install kamal -v 2.2.0
