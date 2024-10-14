@@ -75,8 +75,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.4
+          bundler-cache: true
+          cache-version: "tools-v1-${{ runner.os }}"
+
       - name: Setup Kamal
-        run: alias kamal='docker run -it --rm -v "${PWD}:/workdir" -v "${SSH_AUTH_SOCK}:/ssh-agent" -v /var/run/docker.sock:/var/run/docker.sock -e "SSH_AUTH_SOCK=/ssh-agent" ghcr.io/basecamp/kamal:latest'
+        run: gem install kamal -v 2.2.0
 
       - name: Deploy with Kamal
         run: kamal deploy
